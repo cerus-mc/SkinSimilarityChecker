@@ -18,7 +18,7 @@
  *
  */
 
-package de.cerus.skinsimilaritycheck.config;
+package de.cerus.skinsimilaritycheck.common.config;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -35,8 +35,8 @@ public class GeneralConfig extends Config {
     private boolean autoKick;
     private List<UUID> staffUuids;
 
-    public GeneralConfig(JavaPlugin plugin) {
-        super(plugin, new File("plugins/SkinSimilarityCheck/config.yml"));
+    public GeneralConfig() {
+        super(new File("plugins/SkinSimilarityCheck/config.yml"));
     }
 
     @Override

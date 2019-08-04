@@ -18,18 +18,18 @@
  *
  */
 
-package de.cerus.skinsimilaritycheck;
+package de.cerus.skinsimilaritycheck.bukkit;
 
 import de.cerus.ceruslib.CerusPlugin;
-import de.cerus.skinsimilaritycheck.commands.MatchSkinsCommand;
-import de.cerus.skinsimilaritycheck.config.GeneralConfig;
-import de.cerus.skinsimilaritycheck.listener.JoinListener;
-import de.cerus.skinsimilaritycheck.util.StaffSkinUtil;
+import de.cerus.skinsimilaritycheck.bukkit.commands.MatchSkinsCommand;
+import de.cerus.skinsimilaritycheck.common.config.GeneralConfig;
+import de.cerus.skinsimilaritycheck.bukkit.listener.JoinListener;
+import de.cerus.skinsimilaritycheck.common.util.StaffSkinUtil;
 
 public class SkinSimilarityCheck extends CerusPlugin {
     @Override
     public void onPluginEnable() {
-        GeneralConfig generalConfig = new GeneralConfig(this);
+        GeneralConfig generalConfig = new GeneralConfig();
         generalConfig.initialize();
         generalConfig.load();
 

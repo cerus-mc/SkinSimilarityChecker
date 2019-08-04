@@ -18,9 +18,9 @@
  *
  */
 
-package de.cerus.skinsimilaritycheck.util;
+package de.cerus.skinsimilaritycheck.common.util;
 
-import de.cerus.skinsimilaritycheck.config.GeneralConfig;
+import de.cerus.skinsimilaritycheck.common.config.GeneralConfig;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;

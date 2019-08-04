@@ -18,7 +18,7 @@
  *
  */
 
-package de.cerus.skinsimilaritycheck.config;
+package de.cerus.skinsimilaritycheck.common.config;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -29,12 +29,10 @@ import java.io.IOException;
 
 public abstract class Config {
 
-    private JavaPlugin plugin;
     private File file;
     private FileConfiguration configuration;
 
-    public Config(JavaPlugin plugin, File file) {
-        this.plugin = plugin;
+    public Config(File file) {
         this.file = file;
     }
 
@@ -58,10 +56,6 @@ public abstract class Config {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public JavaPlugin getPlugin() {
-        return plugin;
     }
 
     public File getFile() {

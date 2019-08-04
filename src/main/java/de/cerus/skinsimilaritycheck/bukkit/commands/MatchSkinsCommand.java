@@ -18,14 +18,13 @@
  *
  */
 
-package de.cerus.skinsimilaritycheck.commands;
+package de.cerus.skinsimilaritycheck.bukkit.commands;
 
 import de.cerus.ceruslib.commandframework.Arguments;
 import de.cerus.ceruslib.commandframework.Command;
-import de.cerus.skinsimilaritycheck.util.ImageUtil;
+import de.cerus.skinsimilaritycheck.common.util.ImageUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.craftbukkit.v1_12_R1.CraftOfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 

@@ -18,7 +18,7 @@
  *
  */
 
-package de.cerus.skinsimilaritycheck.util;
+package de.cerus.skinsimilaritycheck.common.util;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -39,7 +39,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 public class ImageUtil {
 

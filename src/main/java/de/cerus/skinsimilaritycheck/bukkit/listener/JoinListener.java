@@ -18,11 +18,11 @@
  *
  */
 
-package de.cerus.skinsimilaritycheck.listener;
+package de.cerus.skinsimilaritycheck.bukkit.listener;
 
 import de.cerus.ceruslib.listenerframework.CerusListener;
-import de.cerus.skinsimilaritycheck.config.GeneralConfig;
-import de.cerus.skinsimilaritycheck.util.StaffSkinUtil;
+import de.cerus.skinsimilaritycheck.common.config.GeneralConfig;
+import de.cerus.skinsimilaritycheck.common.util.StaffSkinUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
