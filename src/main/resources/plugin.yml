@@ -1,0 +1,4 @@
+name: SkinSimilarityCheck
+author: Cerus
+main: de.cerus.skinsimilaritycheck.SkinSimilarityCheck
+version: ${project.version}
