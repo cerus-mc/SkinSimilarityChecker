@@ -20,13 +20,21 @@
 
 package de.cerus.skinsimilaritycheck.bungee;
 
+import de.cerus.skinsimilaritycheck.common.config.GeneralConfig;
 import net.md_5.bungee.api.plugin.Plugin;
 import org.apache.commons.lang.NotImplementedException;
+import org.bstats.bungeecord.Metrics;
 
 public class SkinSimilarityCheck extends Plugin {
 
     @Override
     public void onEnable() {
         throw new NotImplementedException("Please use the Spigot plugin!");
+
+        /*Metrics metrics = new Metrics(this);
+
+        GeneralConfig generalConfig = new GeneralConfig();
+        generalConfig.initialize();
+        generalConfig.load();*/
     }
 }

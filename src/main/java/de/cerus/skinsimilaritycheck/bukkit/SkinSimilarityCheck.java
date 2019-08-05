@@ -25,10 +25,13 @@ import de.cerus.skinsimilaritycheck.bukkit.commands.MatchSkinsCommand;
 import de.cerus.skinsimilaritycheck.common.config.GeneralConfig;
 import de.cerus.skinsimilaritycheck.bukkit.listener.JoinListener;
 import de.cerus.skinsimilaritycheck.common.util.StaffSkinUtil;
+import org.bstats.bukkit.Metrics;
 
 public class SkinSimilarityCheck extends CerusPlugin {
     @Override
     public void onPluginEnable() {
+        Metrics metrics = new Metrics(this);
+
         GeneralConfig generalConfig = new GeneralConfig();
         generalConfig.initialize();
         generalConfig.load();

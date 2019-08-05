@@ -20,9 +20,8 @@
 
 package de.cerus.skinsimilaritycheck.common.config;
 
-import org.bukkit.configuration.file.FileConfiguration;
+import net.md_5.bungee.config.ConfigurationProvider;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,19 +29,37 @@ import java.io.IOException;
 public abstract class Config {
 
     private File file;
-    private FileConfiguration configuration;
+    private ConfigRepresenter configuration;
+    private boolean spigot = true;
 
     public Config(File file) {
         this.file = file;
     }
 
     public void initialize() {
-        configuration = YamlConfiguration.loadConfiguration(file);
+        try {
+            Class.forName("org.bukkit.configuration.file.YamlConfiguration");
+        } catch (ClassNotFoundException e) {
+            spigot = false;
+        }
+
+        if (spigot)
+            configuration = new ConfigRepresenter(file, YamlConfiguration.loadConfiguration(file), spigot);
+        else {
+            try {
+                if (!file.exists())
+                    file.createNewFile();
+                configuration = new ConfigRepresenter(file, ConfigurationProvider.getProvider(net.md_5.bungee.config.YamlConfiguration.class).load(file), spigot);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void load() {
-        if(configuration.getKeys(true).isEmpty())
+        if (configuration.getKeys(true).isEmpty())
             setDefaults();
+        update();
         loadValues();
     }
 
@@ -50,19 +67,18 @@ public abstract class Config {
 
     public abstract void setDefaults();
 
+    public void update() {
+    }
+
     public void save() {
-        try {
-            configuration.save(file);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        configuration.save();
     }
 
     public File getFile() {
         return file;
     }
 
-    public FileConfiguration getConfiguration() {
+    public ConfigRepresenter getConfiguration() {
         return configuration;
     }
 }

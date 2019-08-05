@@ -50,21 +50,25 @@ public class MatchSkinsCommand extends Command {
             OfflinePlayer playerOne = Bukkit.getOfflinePlayer(nameOne);
             OfflinePlayer playerTwo = Bukkit.getOfflinePlayer(nameTwo);
 
-            BufferedImage one;
-            BufferedImage two;
-            try {
-                one = ImageUtil.getFromPlayer(playerOne);
-                two = ImageUtil.getFromPlayer(playerTwo);
-            } catch (IOException e) {
-                e.printStackTrace();
-                return true;
-            }
+            player.sendMessage(getPrefix() + "§7§oRetrieving skins...");
 
-            player.sendMessage(getPrefix()+ImageUtil.getSimilarity(one, two)+"%");
+            new Thread(() -> {
+                BufferedImage one;
+                BufferedImage two;
+                try {
+                    one = ImageUtil.getFromPlayer(playerOne);
+                    two = ImageUtil.getFromPlayer(playerTwo);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    return;
+                }
+
+                player.sendMessage(getPrefix() + ImageUtil.getSimilarity(one, two) + "%");
+            }).start();
             return true;
         }
 
-        player.sendMessage(getPrefix()+"/matchskins <Player one> <Player two>");
+        player.sendMessage(getPrefix() + "/matchskins <Player one> <Player two>");
         return true;
     }
 }

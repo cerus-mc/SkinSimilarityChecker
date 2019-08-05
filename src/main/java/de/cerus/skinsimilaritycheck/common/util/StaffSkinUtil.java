@@ -45,16 +45,18 @@ public class StaffSkinUtil {
         StaffSkinUtil.generalConfig = generalConfig;
 
         System.out.println("Loading "+generalConfig.getStaffUuids().size()+" staff skins");
-        for (UUID staffUuid : generalConfig.getStaffUuids()) {
-            OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(staffUuid);
-            try {
-                staffSkins.put(staffUuid, ImageUtil.getFromPlayer(offlinePlayer));
-            } catch (IOException e) {
-                e.printStackTrace();
-                System.out.println("Failed to load skin of "+offlinePlayer.getName());
+        new Thread(() -> {
+            for (UUID staffUuid : generalConfig.getStaffUuids()) {
+                OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(staffUuid);
+                try {
+                    staffSkins.put(staffUuid, ImageUtil.getFromPlayer(offlinePlayer));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    System.out.println("Failed to load skin of "+offlinePlayer.getName());
+                }
             }
-        }
-        System.out.println("Done");
+            System.out.println("Done");
+        }).start();
     }
 
     public static boolean matchesStaffSkin(Player player) {

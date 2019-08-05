@@ -33,6 +33,8 @@ public class GeneralConfig extends Config {
 
     private double maxAllowedPercentage;
     private boolean autoKick;
+    private boolean discordEnabled;
+    private String webhook;
     private List<UUID> staffUuids;
 
     public GeneralConfig() {
@@ -41,19 +43,33 @@ public class GeneralConfig extends Config {
 
     @Override
     public void loadValues() {
-        FileConfiguration configuration = getConfiguration();
+        ConfigRepresenter configuration = getConfiguration();
         maxAllowedPercentage = configuration.getDouble("max-allowed-percentage");
         autoKick = configuration.getBoolean("auto-kick");
+        discordEnabled = configuration.getBoolean("discord.enabled");
+        webhook = configuration.getString("discord.webhook");
         staffUuids = configuration.getStringList("staff-uuids").stream().map(UUID::fromString).collect(Collectors.toList());
     }
 
     @Override
     public void setDefaults() {
-        FileConfiguration configuration = getConfiguration();
+        ConfigRepresenter configuration = getConfiguration();
         configuration.set("max-allowed-percentage", 70);
         configuration.set("auto-kick", true);
+        configuration.set("discord.enabled", false);
+        configuration.set("discord.webhook", "<Place webhook here>");
         configuration.set("staff-uuids", Arrays.asList("af74a02d-19cb-445b-b07f-6866a861f783", "06f8c3cc-a3c5-4b48-bc6d-d3ee8963f2af"));
         save();
+    }
+
+    @Override
+    public void update() {
+        ConfigRepresenter configuration = getConfiguration();
+        if(!configuration.contains("discord")) {
+            configuration.set("discord.enabled", false);
+            configuration.set("discord.webhook", "<Place webhook here>");
+            save();
+        }
     }
 
     public double getMaxAllowedPercentage() {
@@ -66,5 +82,13 @@ public class GeneralConfig extends Config {
 
     public boolean isAutoKick() {
         return autoKick;
+    }
+
+    public boolean isDiscordEnabled() {
+        return discordEnabled;
+    }
+
+    public String getWebhook() {
+        return webhook;
     }
 }
